@@ -264,12 +264,14 @@ body {
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: #fff;
 }
 
 .card-header p {
     font-size: 1.3rem;
     opacity: 0.9;
     font-style: italic;
+    color: #fff;
 }
 
 .card-body {
