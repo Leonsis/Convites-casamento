@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Casamento - Sofia & Lucas</title>
+    <link rel="stylesheet" href="src/CSS/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="vintage-pattern"></div>
+            <div class="floating-elements">
+                <div class="floating-element vintage"></div>
+                <div class="floating-element vintage"></div>
+                <div class="floating-element vintage"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="couple-showcase">
+                <div class="ornate-frame">
+                    <img src="src/imagens/img1.jpeg" alt="Sofia & Lucas" class="main-photo">
+                    <div class="frame-decoration">
+                        <div class="corner-decoration top-left"></div>
+                        <div class="corner-decoration top-right"></div>
+                        <div class="corner-decoration bottom-left"></div>
+                        <div class="corner-decoration bottom-right"></div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="couple-names">Sofia & Lucas</h1>
+            <div class="vintage-divider">
+                <div class="floral-divider"></div>
+            </div>
+            <p class="wedding-date">10 de Agosto de 2024</p>
+            <p class="wedding-subtitle">Temos o prazer de convidar</p>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item vintage">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item vintage">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item vintage">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Invitation Content -->
+    <section class="invitation-section">
+        <div class="container">
+            <div class="invitation-card">
+                <div class="card-ornament top"></div>
+                <div class="invitation-header">
+                    <h2>Você está convidado</h2>
+                    <p class="invitation-subtitle">Para celebrar conosco o nosso casamento</p>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-card vintage">
+                        <div class="detail-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Data & Horário</h3>
+                            <p>10 de Agosto de 2024</p>
+                            <span class="time">17:00 horas</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-card vintage">
+                        <div class="detail-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Cerimônia</h3>
+                            <p>Igreja Nossa Senhora do Rosário</p>
+                            <span class="address">Rua da Igreja, 456 - Centro Histórico<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-card vintage">
+                        <div class="detail-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Recepção</h3>
+                            <p>Palácio dos Bandeirantes</p>
+                            <span class="address">Avenida Paulista, 1000 - Jardins<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vintage-quote">
+                    <div class="quote-mark">"</div>
+                    <p>O amor é a única força capaz de transformar um inimigo em amigo.</p>
+                    <div class="quote-author">- Martin Luther King</div>
+                </div>
+
+                <div class="rsvp-section">
+                    <h3>Confirmação de Presença</h3>
+                    <p>Por favor, confirme sua presença até 01 de Agosto</p>
+                    <button class="btn-vintage" onclick="openConfirmation()">
+                        <i class="fas fa-feather-alt"></i>
+                        Confirmar Presença
+                    </button>
+                </div>
+                <div class="card-ornament bottom"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-photo">
+                        <img src="src/imagens/img1.jpeg" alt="Primeiro Encontro" class="timeline-img">
+                        <div class="timeline-overlay">
+                            <h4>2019</h4>
+                            <p>Primeiro Encontro</p>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>Nosso Primeiro Encontro</h4>
+                        <p>Nosso primeiro encontro em uma cafeteria no centro da cidade</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-photo">
+                        <img src="src/imagens/img2.jpeg" alt="Pedido de Casamento" class="timeline-img">
+                        <div class="timeline-overlay">
+                            <h4>2023</h4>
+                            <p>O Pedido</p>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>O Pedido de Casamento</h4>
+                        <p>Lucas pediu Sofia em casamento durante um pôr do sol na praia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Sofia & Lucas</h3>
+                <p>10 de Agosto de 2024</p>
+                <p class="footer-quote">"Onde há amor, há vida." - Mahatma Gandhi</p>
+                <div class="floral-pattern-small"></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content vintage-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-feather-alt"></i> Confirmação de Presença
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="confirmationForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="confName" class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control vintage-input" id="confName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="confEmail" class="form-label">E-mail *</label>
+                                <input type="email" class="form-control vintage-input" id="confEmail" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="confPhone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control vintage-input" id="confPhone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="confGuests" class="form-label">Número de Convidados *</label>
+                                <select class="form-select vintage-input" id="confGuests" required>
+                                    <option value="">Selecione</option>
+                                    <option value="1">1 pessoa</option>
+                                    <option value="2">2 pessoas</option>
+                                    <option value="3">3 pessoas</option>
+                                    <option value="4">4 pessoas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confMessage" class="form-label">Mensagem para os noivos</label>
+                            <textarea class="form-control vintage-input" id="confMessage" rows="4" placeholder="Deixe uma mensagem carinhosa..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn-vintage" onclick="submitConfirmation()">
+                        <i class="fas fa-feather-alt"></i>
+                        Confirmar Presença
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/JS/script.js"></script>
+</body>
+
+</html>

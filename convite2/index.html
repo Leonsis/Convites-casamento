@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Casamento - Ana & Pedro</title>
+    <link rel="stylesheet" href="src/CSS/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <div class="romantic-pattern"></div>
+            <div class="floating-hearts">
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart"></i>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="couple-showcase">
+                <div class="main-photo-container">
+                    <img src="src/imagens/img1.jpeg" alt="Ana & Pedro" class="main-photo">
+                    <div class="photo-overlay">
+                        <div class="overlay-hearts">
+                            <i class="fas fa-heart"></i>
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="couple-names">Ana & Pedro</h1>
+            <p class="wedding-date">22 de Julho de 2024</p>
+            <div class="love-quote">
+                <i class="fas fa-quote-left"></i>
+                <p>"O amor não é apenas olhar um para o outro, é olhar juntos na mesma direção."</p>
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <div class="countdown-timer" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Invitation Content -->
+    <section class="invitation-section">
+        <div class="container">
+            <div class="invitation-card">
+                <div class="invitation-header">
+                    <h2>Junte-se a nós</h2>
+                    <p class="invitation-subtitle">Para celebrar o nosso amor</p>
+                </div>
+
+                <div class="event-details">
+                    <div class="detail-card romantic">
+                        <div class="detail-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Data & Horário</h3>
+                            <p>22 de Julho de 2024</p>
+                            <span class="time">18:30 horas</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-card romantic">
+                        <div class="detail-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Cerimônia</h3>
+                            <p>Igreja São Francisco</p>
+                            <span class="address">Av. Paulista, 1000<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-card romantic">
+                        <div class="detail-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Recepção</h3>
+                            <p>Palácio dos Bandeirantes</p>
+                            <span class="address">Rua Haddock Lobo, 1000<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rsvp-section">
+                    <h3>Confirme sua presença</h3>
+                    <p>Até 15 de Julho de 2024</p>
+                    <button class="btn-romantic" onclick="openRSVP()">
+                        <i class="fas fa-heart"></i>
+                        Confirmar Presença
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Nossa História</h2>
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <img src="src/imagens/img1.jpeg" alt="Primeiro encontro" class="gallery-photo">
+                    <div class="photo-overlay">
+                        <h4>Primeiro Encontro</h4>
+                        <p>O início da nossa história de amor</p>
+                    </div>
+                </div>
+                <div class="photo-item">
+                    <img src="src/imagens/img2.jpeg" alt="Pedido de casamento" class="gallery-photo">
+                    <div class="photo-overlay">
+                        <h4>O Pedido</h4>
+                        <p>O momento mais especial das nossas vidas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <h3>Ana & Pedro</h3>
+                <p>22 de Julho de 2024</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RSVP Modal -->
+    <div class="modal fade" id="rsvpModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-heart"></i> Confirmação de Presença
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="rsvpForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="rsvpName" class="form-label">Nome Completo *</label>
+                                <input type="text" class="form-control" id="rsvpName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rsvpEmail" class="form-label">E-mail *</label>
+                                <input type="email" class="form-control" id="rsvpEmail" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="rsvpPhone" class="form-label">Telefone</label>
+                                <input type="tel" class="form-control" id="rsvpPhone">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="rsvpGuests" class="form-label">Número de Convidados *</label>
+                                <select class="form-select" id="rsvpGuests" required>
+                                    <option value="">Selecione</option>
+                                    <option value="1">1 pessoa</option>
+                                    <option value="2">2 pessoas</option>
+                                    <option value="3">3 pessoas</option>
+                                    <option value="4">4 pessoas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rsvpMessage" class="form-label">Mensagem para os noivos</label>
+                            <textarea class="form-control" id="rsvpMessage" rows="4" placeholder="Deixe uma mensagem carinhosa..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn-romantic" onclick="submitRSVP()">
+                        <i class="fas fa-heart"></i>
+                        Confirmar Presença
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="src/JS/script.js"></script>
+</body>
+
+</html>
