@@ -1,0 +1,13 @@
+# Arquivos de configuração com tokens sensíveis
+convite2/src/JS/config.js
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
