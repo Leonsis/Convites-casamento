@@ -6,9 +6,6 @@ function openRSVP() {
     modal.show();
 }
 
-// Array para armazenar dados dos convidados
-let convidadosData = JSON.parse(localStorage.getItem('convidadosData')) || [];
-
 // Função para submeter RSVP
 function submitRSVP() {
     const form = document.getElementById('rsvpForm');
@@ -26,24 +23,18 @@ function submitRSVP() {
 
     // Criar objeto com dados
     const rsvpData = {
-        id: Date.now(), // ID único
         nome: name,
         email: email,
         telefone: document.getElementById('rsvpPhone').value || 'Não informado',
         convidados: guests,
         mensagem: document.getElementById('rsvpMessage').value || 'Sem mensagem',
         restricoes: document.getElementById('rsvpDietary') ? document.getElementById('rsvpDietary').checked : false,
-        dataConfirmacao: new Date().toLocaleString('pt-BR')
+        dataConfirmacao: new Date().toLocaleString('pt-BR'),
+        ip: 'N/A' // Em um ambiente real, seria obtido do servidor
     };
 
-    // Adicionar aos dados salvos
-    convidadosData.push(rsvpData);
-
     // Salvar no localStorage
-    localStorage.setItem('convidadosData', JSON.stringify(convidadosData));
-
-    console.log('RSVP Data:', rsvpData);
-    console.log('Total de convidados:', convidadosData.length);
+    saveRSVPToStorage(rsvpData);
 
     // Mostrar confirmação
     showNotification('Obrigado! Sua presença foi confirmada com sucesso! 💕', 'success');
@@ -56,39 +47,68 @@ function submitRSVP() {
     form.reset();
 }
 
-// ===== FUNÇÕES DE EXPORTAÇÃO CSV =====
+// Função para salvar RSVP no localStorage
+function saveRSVPToStorage(rsvpData) {
+    try {
+        // Obter dados existentes
+        const existingData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
 
-// Função para converter dados para CSV
-function convertToCSV(data) {
-    if (data.length === 0) return '';
+        // Adicionar novo RSVP
+        existingData.push(rsvpData);
 
-    // Cabeçalhos do CSV
-    const headers = ['ID', 'Nome', 'Email', 'Telefone', 'Convidados', 'Mensagem', 'Restrições Alimentares', 'Data Confirmação'];
+        // Salvar de volta no localStorage
+        localStorage.setItem('rsvpData', JSON.stringify(existingData));
 
-    // Converter dados para linhas CSV
-    const csvRows = [headers.join(',')];
+        console.log('RSVP salvo com sucesso!', rsvpData);
+    } catch (error) {
+        console.error('Erro ao salvar RSVP:', error);
+        showNotification('Erro ao salvar dados. Tente novamente.', 'error');
+    }
+}
 
-    data.forEach(item => {
-        const row = [
-            item.id,
-            `"${item.nome}"`,
-            `"${item.email}"`,
-            `"${item.telefone}"`,
-            item.convidados,
-            `"${item.mensagem.replace(/"/g, '""')}"`, // Escapar aspas duplas
-            item.restricoes ? 'Sim' : 'Não',
-            `"${item.dataConfirmacao}"`
-        ];
-        csvRows.push(row.join(','));
-    });
+// Função para exportar dados para CSV
+function exportToCSV() {
+    try {
+        // Obter dados do localStorage
+        const rsvpData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
 
-    return csvRows.join('\n');
+        if (rsvpData.length === 0) {
+            showNotification('Nenhum dado encontrado para exportar.', 'error');
+            return;
+        }
+
+        // Criar cabeçalho CSV
+        const headers = ['Nome', 'Email', 'Telefone', 'Convidados', 'Mensagem', 'Restrições', 'Data Confirmação'];
+
+        // Converter dados para CSV
+        const csvContent = [
+            headers.join(','),
+            ...rsvpData.map(item => [
+                `"${item.nome}"`,
+                `"${item.email}"`,
+                `"${item.telefone}"`,
+                `"${item.convidados}"`,
+                `"${item.mensagem.replace(/"/g, '""')}"`, // Escapar aspas
+                `"${item.restricoes ? 'Sim' : 'Não'}"`,
+                `"${item.dataConfirmacao}"`
+            ].join(','))
+        ].join('\n');
+
+        // Criar e baixar arquivo
+        downloadCSV(csvContent, 'rsvp_confirmacoes.csv');
+
+        showNotification('Arquivo CSV exportado com sucesso! 📄', 'success');
+
+    } catch (error) {
+        console.error('Erro ao exportar CSV:', error);
+        showNotification('Erro ao exportar dados. Tente novamente.', 'error');
+    }
 }
 
 // Função para baixar arquivo CSV
-function downloadCSV(csvContent, filename) {
-    // Criar blob com o conteúdo CSV
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+function downloadCSV(content, filename) {
+    // Criar blob com o conteúdo
+    const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
 
     // Criar link de download
     const link = document.createElement('a');
@@ -103,78 +123,119 @@ function downloadCSV(csvContent, filename) {
     link.click();
     document.body.removeChild(link);
 
-    // Limpar URL
+    // Limpar URL object
     URL.revokeObjectURL(url);
-}
-
-// Função para exportar dados para CSV
-function exportToCSV() {
-    if (convidadosData.length === 0) {
-        showNotification('Nenhum dado encontrado para exportar.', 'warning');
-        return;
-    }
-
-    const csvContent = convertToCSV(convidadosData);
-    const filename = `convidados_casamento_${new Date().toISOString().split('T')[0]}.csv`;
-
-    downloadCSV(csvContent, filename);
-    showNotification(`Arquivo CSV exportado com sucesso! 📄`, 'success');
-}
-
-// Função para exportar dados para JSON
-function exportToJSON() {
-    if (convidadosData.length === 0) {
-        showNotification('Nenhum dado encontrado para exportar.', 'warning');
-        return;
-    }
-
-    const jsonContent = JSON.stringify(convidadosData, null, 2);
-    const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
-
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-
-    link.setAttribute('href', url);
-    link.setAttribute('download', `convidados_casamento_${new Date().toISOString().split('T')[0]}.json`);
-    link.style.visibility = 'hidden';
-
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    URL.revokeObjectURL(url);
-    showNotification(`Arquivo JSON exportado com sucesso! 📋`, 'success');
 }
 
 // Função para mostrar estatísticas
 function showStats() {
-    const totalConvidados = convidadosData.length;
-    const totalPessoas = convidadosData.reduce((sum, item) => sum + parseInt(item.convidados), 0);
-    const comRestricoes = convidadosData.filter(item => item.restricoes).length;
+    try {
+        const rsvpData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
 
-    const statsMessage = `
-        📊 ESTATÍSTICAS DO CASAMENTO
-        
-        👥 Total de Confirmações: ${totalConvidados}
-        🧑‍🤝‍🧑 Total de Pessoas: ${totalPessoas}
-        🥗 Com Restrições Alimentares: ${comRestricoes}
-        📅 Última Atualização: ${new Date().toLocaleString('pt-BR')}
-    `;
+        if (rsvpData.length === 0) {
+            showNotification('Nenhum dado encontrado.', 'error');
+            return;
+        }
 
-    showNotification(statsMessage, 'info');
+        // Calcular estatísticas
+        const totalConfirmacoes = rsvpData.length;
+        const totalConvidados = rsvpData.reduce((sum, item) => sum + parseInt(item.convidados), 0);
+        const comRestricoes = rsvpData.filter(item => item.restricoes).length;
+        const comMensagem = rsvpData.filter(item => item.mensagem && item.mensagem !== 'Sem mensagem').length;
+
+        // Criar modal de estatísticas
+        const statsModal = document.createElement('div');
+        statsModal.className = 'modal fade';
+        statsModal.innerHTML = `
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" style="background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%); color: white;">
+                        <h5 class="modal-title">
+                            <i class="fas fa-chart-bar"></i> Estatísticas de Confirmações
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="stat-card">
+                                    <h4>${totalConfirmacoes}</h4>
+                                    <p>Total de Confirmações</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="stat-card">
+                                    <h4>${totalConvidados}</h4>
+                                    <p>Total de Convidados</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="stat-card">
+                                    <h4>${comRestricoes}</h4>
+                                    <p>Com Restrições Alimentares</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="stat-card">
+                                    <h4>${comMensagem}</h4>
+                                    <p>Com Mensagens</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button class="btn btn-primary" onclick="exportToCSV()">
+                                <i class="fas fa-download"></i> Exportar CSV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Adicionar estilos
+        const style = document.createElement('style');
+        style.textContent = `
+            .stat-card {
+                background: #f8f9fa;
+                padding: 1.5rem;
+                border-radius: 10px;
+                text-align: center;
+                border-left: 4px solid #8b1538;
+            }
+            .stat-card h4 {
+                color: #8b1538;
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            .stat-card p {
+                color: #666;
+                margin: 0;
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.body.appendChild(statsModal);
+
+        // Mostrar modal
+        const modal = new bootstrap.Modal(statsModal);
+        modal.show();
+
+        // Remover modal do DOM quando fechado
+        statsModal.addEventListener('hidden.bs.modal', () => {
+            document.body.removeChild(statsModal);
+        });
+
+    } catch (error) {
+        console.error('Erro ao mostrar estatísticas:', error);
+        showNotification('Erro ao carregar estatísticas.', 'error');
+    }
 }
 
 // Função para limpar todos os dados
 function clearAllData() {
-    if (convidadosData.length === 0) {
-        showNotification('Nenhum dado encontrado para limpar.', 'warning');
-        return;
-    }
-
-    if (confirm('⚠️ ATENÇÃO: Esta ação irá apagar TODOS os dados dos convidados. Esta ação não pode ser desfeita!\n\nTem certeza que deseja continuar?')) {
-        convidadosData = [];
-        localStorage.removeItem('convidadosData');
-        showNotification('Todos os dados foram removidos com sucesso! 🗑️', 'success');
+    if (confirm('Tem certeza que deseja limpar todos os dados? Esta ação não pode ser desfeita.')) {
+        localStorage.removeItem('rsvpData');
+        showNotification('Todos os dados foram limpos! 🗑️', 'success');
     }
 }
 
