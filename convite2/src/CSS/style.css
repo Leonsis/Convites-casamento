@@ -208,7 +208,7 @@ body {
 /* Invitation Section - Card Único */
 
 .invitation-section {
-    padding: 5rem 0;
+    padding: 3rem 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
     z-index: 2;
@@ -218,7 +218,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 60vh;
+    padding: 2rem 0;
 }
 
 .invitation-card {
@@ -230,6 +231,7 @@ body {
     overflow: hidden;
     border: 3px solid #8b1538;
     position: relative;
+    margin: 0 auto;
 }
 
 .card-header {
@@ -719,6 +721,23 @@ body {
     .photo-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    .invitation-wrapper {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+    .invitation-card {
+        margin: 1rem;
+        max-width: calc(100% - 2rem);
+    }
+    .card-header {
+        padding: 2rem 1.5rem;
+    }
+    .card-body {
+        padding: 2rem 1.5rem;
+    }
+    .card-footer {
+        padding: 2rem 1.5rem;
     }
 }
 
