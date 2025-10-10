@@ -36,6 +36,9 @@ function submitRSVP() {
     // Salvar no localStorage
     saveRSVPToStorage(rsvpData);
 
+    // Salvar automaticamente em CSV
+    saveToCSV(rsvpData);
+
     // Mostrar confirmação
     showNotification('Obrigado! Sua presença foi confirmada com sucesso! 💕', 'success');
 
@@ -66,24 +69,19 @@ function saveRSVPToStorage(rsvpData) {
     }
 }
 
-// Função para exportar dados para CSV
-function exportToCSV() {
+// Função para salvar automaticamente em CSV
+function saveToCSV(rsvpData) {
     try {
-        // Obter dados do localStorage
-        const rsvpData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
-
-        if (rsvpData.length === 0) {
-            showNotification('Nenhum dado encontrado para exportar.', 'error');
-            return;
-        }
+        // Obter todos os dados do localStorage
+        const allData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
 
         // Criar cabeçalho CSV
         const headers = ['Nome', 'Email', 'Telefone', 'Convidados', 'Mensagem', 'Restrições', 'Data Confirmação'];
 
-        // Converter dados para CSV
+        // Converter todos os dados para CSV
         const csvContent = [
             headers.join(','),
-            ...rsvpData.map(item => [
+            ...allData.map(item => [
                 `"${item.nome}"`,
                 `"${item.email}"`,
                 `"${item.telefone}"`,
@@ -94,16 +92,17 @@ function exportToCSV() {
             ].join(','))
         ].join('\n');
 
-        // Criar e baixar arquivo
-        downloadCSV(csvContent, 'rsvp_confirmacoes.csv');
+        // Criar e baixar arquivo automaticamente
+        downloadCSV(csvContent, `rsvp_confirmacoes_${new Date().toISOString().split('T')[0]}.csv`);
 
-        showNotification('Arquivo CSV exportado com sucesso! 📄', 'success');
+        console.log('Arquivo CSV salvo automaticamente!');
 
     } catch (error) {
-        console.error('Erro ao exportar CSV:', error);
-        showNotification('Erro ao exportar dados. Tente novamente.', 'error');
+        console.error('Erro ao salvar CSV:', error);
+        // Não mostrar erro para o usuário, apenas log
     }
 }
+
 
 // Função para baixar arquivo CSV
 function downloadCSV(content, filename) {
@@ -127,117 +126,6 @@ function downloadCSV(content, filename) {
     URL.revokeObjectURL(url);
 }
 
-// Função para mostrar estatísticas
-function showStats() {
-    try {
-        const rsvpData = JSON.parse(localStorage.getItem('rsvpData') || '[]');
-
-        if (rsvpData.length === 0) {
-            showNotification('Nenhum dado encontrado.', 'error');
-            return;
-        }
-
-        // Calcular estatísticas
-        const totalConfirmacoes = rsvpData.length;
-        const totalConvidados = rsvpData.reduce((sum, item) => sum + parseInt(item.convidados), 0);
-        const comRestricoes = rsvpData.filter(item => item.restricoes).length;
-        const comMensagem = rsvpData.filter(item => item.mensagem && item.mensagem !== 'Sem mensagem').length;
-
-        // Criar modal de estatísticas
-        const statsModal = document.createElement('div');
-        statsModal.className = 'modal fade';
-        statsModal.innerHTML = `
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header" style="background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%); color: white;">
-                        <h5 class="modal-title">
-                            <i class="fas fa-chart-bar"></i> Estatísticas de Confirmações
-                        </h5>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <div class="stat-card">
-                                    <h4>${totalConfirmacoes}</h4>
-                                    <p>Total de Confirmações</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="stat-card">
-                                    <h4>${totalConvidados}</h4>
-                                    <p>Total de Convidados</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="stat-card">
-                                    <h4>${comRestricoes}</h4>
-                                    <p>Com Restrições Alimentares</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="stat-card">
-                                    <h4>${comMensagem}</h4>
-                                    <p>Com Mensagens</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <button class="btn btn-primary" onclick="exportToCSV()">
-                                <i class="fas fa-download"></i> Exportar CSV
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-
-        // Adicionar estilos
-        const style = document.createElement('style');
-        style.textContent = `
-            .stat-card {
-                background: #f8f9fa;
-                padding: 1.5rem;
-                border-radius: 10px;
-                text-align: center;
-                border-left: 4px solid #8b1538;
-            }
-            .stat-card h4 {
-                color: #8b1538;
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
-            }
-            .stat-card p {
-                color: #666;
-                margin: 0;
-            }
-        `;
-        document.head.appendChild(style);
-
-        document.body.appendChild(statsModal);
-
-        // Mostrar modal
-        const modal = new bootstrap.Modal(statsModal);
-        modal.show();
-
-        // Remover modal do DOM quando fechado
-        statsModal.addEventListener('hidden.bs.modal', () => {
-            document.body.removeChild(statsModal);
-        });
-
-    } catch (error) {
-        console.error('Erro ao mostrar estatísticas:', error);
-        showNotification('Erro ao carregar estatísticas.', 'error');
-    }
-}
-
-// Função para limpar todos os dados
-function clearAllData() {
-    if (confirm('Tem certeza que deseja limpar todos os dados? Esta ação não pode ser desfeita.')) {
-        localStorage.removeItem('rsvpData');
-        showNotification('Todos os dados foram limpos! 🗑️', 'success');
-    }
-}
 
 // Função para mostrar notificações
 function showNotification(message, type = 'info') {
