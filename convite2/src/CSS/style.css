@@ -1,4 +1,4 @@
-/* Convite 2 - Estilo Fixdate Romântico */
+/* Convite 2 - Layout Romântico Circular */
 
 * {
     margin: 0;
@@ -8,18 +8,18 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: #fefefe;
+    background: #f8f9fa;
     color: #333;
     line-height: 1.6;
     overflow-x: hidden;
 }
 
 
-/* Hero Section */
+/* Hero Section - Layout Circular */
 
 .hero-section {
     height: 100vh;
-    background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 50%, #f1aeb5 100%);
+    background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
     position: relative;
     display: flex;
     align-items: center;
@@ -34,16 +34,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-}
-
-.romantic-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
-    opacity: 0.3;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
 }
 
 .floating-hearts {
@@ -56,39 +47,39 @@ body {
     z-index: 1;
 }
 
-.floating-hearts i {
+.heart {
     position: absolute;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 1.5rem;
-    animation: float 6s ease-in-out infinite;
+    font-size: 2rem;
+    animation: floatHeart 6s ease-in-out infinite;
+    opacity: 0.7;
 }
 
-.floating-hearts i:nth-child(1) {
+.heart-1 {
     top: 20%;
     left: 10%;
     animation-delay: 0s;
 }
 
-.floating-hearts i:nth-child(2) {
+.heart-2 {
     top: 30%;
     right: 15%;
     animation-delay: 1s;
 }
 
-.floating-hearts i:nth-child(3) {
+.heart-3 {
     top: 60%;
     left: 20%;
     animation-delay: 2s;
 }
 
-.floating-hearts i:nth-child(4) {
+.heart-4 {
     top: 70%;
     right: 25%;
     animation-delay: 3s;
 }
 
-.floating-hearts i:nth-child(5) {
-    top: 40%;
+.heart-5 {
+    bottom: 20%;
     left: 50%;
     animation-delay: 4s;
 }
@@ -98,27 +89,30 @@ body {
     z-index: 2;
     text-align: center;
     color: #6d4c5a;
-    max-width: 800px;
+    max-width: 600px;
     padding: 0 2rem;
-}
-
-.couple-showcase {
-    margin-bottom: 3rem;
 }
 
 .main-photo-container {
     position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.photo-ring {
     width: 200px;
     height: 200px;
-    margin: 0 auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid rgba(255, 255, 255, 0.3);
+    border: 6px solid rgba(255, 255, 255, 0.8);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
     transition: transform 0.3s ease;
 }
 
-.main-photo-container:hover {
+.photo-ring:hover {
     transform: scale(1.05);
 }
 
@@ -128,117 +122,112 @@ body {
     object-fit: cover;
 }
 
-.photo-overlay {
+.photo-decoration {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(248, 215, 218, 0.3), rgba(241, 174, 181, 0.3));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    z-index: 1;
+    animation: rotate 20s linear infinite;
 }
 
-.main-photo-container:hover .photo-overlay {
-    opacity: 1;
+.photo-decoration::before,
+.photo-decoration::after {
+    content: '💕';
+    position: absolute;
+    font-size: 1.5rem;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-.overlay-hearts {
-    display: flex;
-    gap: 10px;
+.photo-decoration::before {
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.overlay-hearts i {
-    font-size: 2rem;
-    color: white;
-    animation: heartbeat 1.5s ease-in-out infinite;
+.photo-decoration::after {
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.overlay-hearts i:nth-child(2) {
-    animation-delay: 0.3s;
+.couple-info {
+    margin-bottom: 3rem;
 }
 
 .couple-names {
     font-family: 'Dancing Script', cursive;
     font-size: 4.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     letter-spacing: 2px;
+    color: #6d4c5a;
 }
 
 .wedding-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.date-text {
     font-size: 1.8rem;
-    font-weight: 300;
-    margin-bottom: 3rem;
+    font-weight: 500;
     letter-spacing: 1px;
-    opacity: 0.9;
 }
 
-.love-quote {
-    text-align: center;
-    margin: 3rem 0;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-}
-
-.love-quote i {
-    color: rgba(255, 255, 255, 0.8);
+.date-heart {
     font-size: 1.5rem;
-    position: absolute;
+    animation: heartbeat 2s ease-in-out infinite;
 }
 
-.love-quote i:first-child {
-    top: 15px;
-    left: 20px;
-}
-
-.love-quote i:last-child {
-    bottom: 15px;
-    right: 20px;
-}
-
-.love-quote p {
-    font-style: italic;
+.wedding-subtitle {
     font-size: 1.3rem;
-    color: white;
-    margin: 0;
-    padding: 0 2rem;
-    line-height: 1.5;
+    font-style: italic;
+    opacity: 0.8;
+    color: #6d4c5a;
 }
 
-
-/* Countdown Timer */
+.countdown-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
 .countdown-timer {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-bottom: 2rem;
 }
 
 .countdown-item {
     text-align: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.3);
     padding: 1.5rem;
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     min-width: 80px;
+    transition: transform 0.3s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-5px);
 }
 
 .countdown-number {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: white;
+    color: #6d4c5a;
     line-height: 1;
 }
 
@@ -247,6 +236,7 @@ body {
     opacity: 0.8;
     text-transform: uppercase;
     letter-spacing: 1px;
+    color: #6d4c5a;
 }
 
 .scroll-indicator {
@@ -262,69 +252,99 @@ body {
 }
 
 
-/* Invitation Section */
+/* Invitation Section - Card Único */
 
 .invitation-section {
     padding: 5rem 0;
-    background: white;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     position: relative;
     z-index: 2;
 }
 
-.invitation-card {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    border: 2px solid #f8d7da;
+.invitation-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
 
-.invitation-header {
+.invitation-card {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border: 3px solid #f8d7da;
+    position: relative;
+}
+
+.card-header {
     background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
     padding: 3rem 2rem;
     text-align: center;
     color: white;
+    position: relative;
 }
 
-.invitation-header h2 {
+.header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.decoration-line {
+    width: 60px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.decoration-heart {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.card-header h2 {
     font-family: 'Dancing Script', cursive;
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 700;
 }
 
-.invitation-subtitle {
+.card-header p {
     font-size: 1.3rem;
     opacity: 0.9;
     font-style: italic;
 }
 
-.event-details {
+.card-body {
     padding: 3rem 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
 }
 
-.detail-card {
+.event-info {
+    margin-bottom: 3rem;
+}
+
+.info-item {
     display: flex;
     align-items: flex-start;
-    padding: 2rem;
-    background: #f8f9fa;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 20px;
     border-left: 5px solid #f8d7da;
     transition: all 0.3s ease;
 }
 
-.detail-card:hover {
+.info-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     border-left-color: #f1aeb5;
 }
 
-.detail-icon {
+.info-icon {
     width: 60px;
     height: 60px;
     background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
@@ -336,41 +356,75 @@ body {
     flex-shrink: 0;
 }
 
-.detail-icon i {
+.info-icon i {
     color: white;
     font-size: 1.5rem;
 }
 
-.detail-content h3 {
-    font-size: 1.4rem;
-    color: #333;
+.info-content h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #6d4c5a;
     margin-bottom: 0.5rem;
     font-weight: 600;
 }
 
-.detail-content p {
+.info-content p {
     color: #666;
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
 
-.detail-content .time {
+.info-content .time {
     color: #f1aeb5;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-.detail-content .address {
+.info-content .address {
     color: #666;
     font-size: 0.9rem;
     line-height: 1.4;
 }
 
-.rsvp-section {
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
-    color: white;
+.love-quote {
     text-align: center;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
+    border-radius: 20px;
+    position: relative;
+    margin: 2rem 0;
+}
+
+.quote-mark {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: white;
+    line-height: 1;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.love-quote p {
+    font-style: italic;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.quote-author {
+    font-size: 1rem;
+    color: white;
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+.card-footer {
+    background: linear-gradient(135deg, #f8d7da 0%, #f1aeb5 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: white;
 }
 
 .rsvp-section h3 {
@@ -411,7 +465,7 @@ body {
 }
 
 
-/* Gallery Section */
+/* Gallery Section - Grid Layout */
 
 .gallery-section {
     padding: 5rem 0;
@@ -422,7 +476,7 @@ body {
     font-family: 'Dancing Script', cursive;
     font-size: 3.5rem;
     text-align: center;
-    color: #333;
+    color: #6d4c5a;
     margin-bottom: 4rem;
     font-weight: 700;
 }
@@ -435,26 +489,32 @@ body {
     margin: 0 auto;
 }
 
-.photo-item {
+.grid-item {
     position: relative;
-    border-radius: 20px;
+    border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
 }
 
-.photo-item:hover {
+.grid-item:hover {
     transform: translateY(-10px);
+}
+
+.photo-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
 }
 
 .gallery-photo {
     width: 100%;
-    height: 300px;
+    height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.photo-item:hover .gallery-photo {
+.grid-item:hover .gallery-photo {
     transform: scale(1.05);
 }
 
@@ -470,19 +530,18 @@ body {
     transition: transform 0.3s ease;
 }
 
-.photo-item:hover .photo-overlay {
+.grid-item:hover .photo-overlay {
     transform: translateY(0);
 }
 
 .photo-overlay h4 {
-    font-family: 'Dancing Script', cursive;
     font-size: 2rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
 }
 
 .photo-overlay p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     opacity: 0.9;
 }
 
@@ -490,13 +549,31 @@ body {
 /* Footer */
 
 .footer-section {
-    background: #333;
+    background: linear-gradient(135deg, #6d4c5a 0%, #8b5a6b 100%);
     color: white;
     padding: 3rem 0;
 }
 
 .footer-content {
     text-align: center;
+}
+
+.footer-hearts {
+    margin-bottom: 2rem;
+}
+
+.footer-hearts span {
+    font-size: 2rem;
+    margin: 0 0.5rem;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.footer-hearts span:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.footer-hearts span:nth-child(3) {
+    animation-delay: 1s;
 }
 
 .footer-content h3 {
@@ -509,7 +586,6 @@ body {
 .footer-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    opacity: 0.8;
 }
 
 .social-links {
@@ -562,14 +638,6 @@ body {
     margin-right: 10px;
 }
 
-.form-control,
-.form-select {
-    border-radius: 10px;
-    border: 2px solid #e9ecef;
-    padding: 12px 15px;
-    transition: all 0.3s ease;
-}
-
 .form-control:focus,
 .form-select:focus {
     border-color: #f8d7da;
@@ -579,7 +647,7 @@ body {
 
 /* Animations */
 
-@keyframes float {
+@keyframes floatHeart {
     0%,
     100% {
         transform: translateY(0px) rotate(0deg);
@@ -595,6 +663,27 @@ body {
         transform: scale(1);
     }
     50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
         transform: scale(1.1);
     }
 }
@@ -630,20 +719,20 @@ body {
     animation: fadeInUp 0.8s ease-out;
 }
 
-.detail-card {
+.info-item {
     animation: fadeInUp 0.8s ease-out;
     animation-fill-mode: both;
 }
 
-.detail-card:nth-child(1) {
+.info-item:nth-child(1) {
     animation-delay: 0.1s;
 }
 
-.detail-card:nth-child(2) {
+.info-item:nth-child(2) {
     animation-delay: 0.2s;
 }
 
-.detail-card:nth-child(3) {
+.info-item:nth-child(3) {
     animation-delay: 0.3s;
 }
 
@@ -655,7 +744,8 @@ body {
         font-size: 3.5rem;
     }
     .wedding-date {
-        font-size: 1.4rem;
+        flex-direction: column;
+        gap: 0.5rem;
     }
     .countdown-timer {
         gap: 1rem;
@@ -667,19 +757,15 @@ body {
     .countdown-number {
         font-size: 2rem;
     }
-    .main-photo-container {
+    .photo-ring {
         width: 150px;
         height: 150px;
     }
-    .event-details {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    .detail-card {
+    .info-item {
         flex-direction: column;
         text-align: center;
     }
-    .detail-icon {
+    .info-icon {
         margin-right: 0;
         margin-bottom: 1rem;
     }
@@ -693,7 +779,7 @@ body {
     .couple-names {
         font-size: 3rem;
     }
-    .main-photo-container {
+    .photo-ring {
         width: 120px;
         height: 120px;
     }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Convite de Casamento - Brenda & Caio</title>
+    <title>Convite de Casamento - Ana & Pedro</title>
     <link rel="stylesheet" href="src/CSS/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -12,130 +12,152 @@
 </head>
 
 <body>
-    <!-- Hero Section -->
+    <!-- Hero Section - Layout Circular -->
     <section class="hero-section">
         <div class="hero-background">
-            <div class="romantic-pattern"></div>
             <div class="floating-hearts">
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
-                <i class="fas fa-heart"></i>
+                <div class="heart heart-1">💕</div>
+                <div class="heart heart-2">💖</div>
+                <div class="heart heart-3">💗</div>
+                <div class="heart heart-4">💝</div>
+                <div class="heart heart-5">💘</div>
             </div>
         </div>
+
         <div class="hero-content">
-            <div class="couple-showcase">
-                <div class="main-photo-container">
-                    <img src="src/imagens/img1.jpeg" alt="Brenda & Caio" class="main-photo">
-                    <div class="photo-overlay">
-                        <div class="overlay-hearts">
-                            <i class="fas fa-heart"></i>
-                            <i class="fas fa-heart"></i>
-                        </div>
+            <div class="main-photo-container">
+                <div class="photo-ring">
+                    <img src="src/imagens/img1.jpeg" alt="Ana & Pedro" class="main-photo">
+                </div>
+                <div class="photo-decoration"></div>
+            </div>
+
+            <div class="couple-info">
+                <h1 class="couple-names">Ana & Pedro</h1>
+                <div class="wedding-date">
+                    <span class="date-text">15 de Junho de 2024</span>
+                    <span class="date-heart">💕</span>
+                </div>
+                <p class="wedding-subtitle">Juntos para sempre</p>
+            </div>
+
+            <div class="countdown-container">
+                <div class="countdown-timer" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Dias</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutos</span>
                     </div>
                 </div>
             </div>
-            <h1 class="couple-names">Brenda & Caio</h1>
-            <p class="wedding-date">22 de Julho de 2024</p>
-            <div class="love-quote">
-                <i class="fas fa-quote-left"></i>
-                <p>"O amor não é apenas olhar um para o outro, é olhar juntos na mesma direção."</p>
-                <i class="fas fa-quote-right"></i>
-            </div>
-            <div class="countdown-timer" id="countdown">
-                <div class="countdown-item">
-                    <span class="countdown-number" id="days">00</span>
-                    <span class="countdown-label">Dias</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="hours">00</span>
-                    <span class="countdown-label">Horas</span>
-                </div>
-                <div class="countdown-item">
-                    <span class="countdown-number" id="minutes">00</span>
-                    <span class="countdown-label">Minutos</span>
-                </div>
-            </div>
         </div>
+
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
 
-    <!-- Invitation Content -->
+    <!-- Invitation Card - Layout em Card Único -->
     <section class="invitation-section">
         <div class="container">
-            <div class="invitation-card">
-                <div class="invitation-header">
-                    <h2>Junte-se a nós</h2>
-                    <p class="invitation-subtitle">Para celebrar o nosso amor</p>
-                </div>
-
-                <div class="event-details">
-                    <div class="detail-card romantic">
-                        <div class="detail-icon">
-                            <i class="fas fa-calendar-alt"></i>
+            <div class="invitation-wrapper">
+                <div class="invitation-card">
+                    <div class="card-header">
+                        <div class="header-decoration">
+                            <div class="decoration-line"></div>
+                            <div class="decoration-heart">💕</div>
+                            <div class="decoration-line"></div>
                         </div>
-                        <div class="detail-content">
-                            <h3>Data & Horário</h3>
-                            <p>22 de Julho de 2024</p>
-                            <span class="time">18:30 horas</span>
+                        <h2>Você está convidado!</h2>
+                        <p>Para celebrar conosco o nosso casamento</p>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="event-info">
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-calendar-heart"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h3>Data & Horário</h3>
+                                    <p>15 de Junho de 2024</p>
+                                    <span class="time">19:00 horas</span>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-church"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h3>Cerimônia</h3>
+                                    <p>Igreja Nossa Senhora da Conceição</p>
+                                    <span class="address">Rua das Flores, 123 - Centro<br>São Paulo - SP</span>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="info-icon">
+                                    <i class="fas fa-glass-cheers"></i>
+                                </div>
+                                <div class="info-content">
+                                    <h3>Recepção</h3>
+                                    <p>Salão de Festas Jardim</p>
+                                    <span class="address">Rua das Palmeiras, 456 - Jardins<br>São Paulo - SP</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="love-quote">
+                            <div class="quote-mark">"</div>
+                            <p>O amor é a única força capaz de transformar um inimigo em amigo.</p>
+                            <span class="quote-author">- Martin Luther King</span>
                         </div>
                     </div>
 
-                    <div class="detail-card romantic">
-                        <div class="detail-icon">
-                            <i class="fas fa-church"></i>
-                        </div>
-                        <div class="detail-content">
-                            <h3>Cerimônia</h3>
-                            <p>Igreja São Francisco</p>
-                            <span class="address">Av. Paulista, 1000<br>São Paulo - SP</span>
-                        </div>
-                    </div>
-
-                    <div class="detail-card romantic">
-                        <div class="detail-icon">
-                            <i class="fas fa-glass-cheers"></i>
-                        </div>
-                        <div class="detail-content">
-                            <h3>Recepção</h3>
-                            <p>Palácio dos Bandeirantes</p>
-                            <span class="address">Rua Haddock Lobo, 1000<br>São Paulo - SP</span>
+                    <div class="card-footer">
+                        <div class="rsvp-section">
+                            <h3>Confirme sua presença</h3>
+                            <p>Até 01 de Junho de 2024</p>
+                            <button class="btn-romantic" onclick="openRSVP()">
+                                <i class="fas fa-heart"></i>
+                                Confirmar Presença
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <div class="rsvp-section">
-                    <h3>Confirme sua presença</h3>
-                    <p>Até 15 de Julho de 2024</p>
-                    <button class="btn-romantic" onclick="openRSVP()">
-                        <i class="fas fa-heart"></i>
-                        Confirmar Presença
-                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Photo Gallery -->
+    <!-- Photo Gallery - Layout em Grid -->
     <section class="gallery-section">
         <div class="container">
-            <h2 class="section-title">Nossa História</h2>
+            <h2 class="section-title">Nossa História de Amor</h2>
             <div class="photo-grid">
-                <div class="photo-item">
-                    <img src="src/imagens/img1.jpeg" alt="Primeiro encontro" class="gallery-photo">
-                    <div class="photo-overlay">
-                        <h4>Primeiro Encontro</h4>
-                        <p>O início da nossa história de amor</p>
+                <div class="grid-item">
+                    <div class="photo-container">
+                        <img src="src/imagens/img1.jpeg" alt="Primeiro encontro" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <h4>2019</h4>
+                            <p>Nosso primeiro encontro</p>
+                        </div>
                     </div>
                 </div>
-                <div class="photo-item">
-                    <img src="src/imagens/img2.jpeg" alt="Pedido de casamento" class="gallery-photo">
-                    <div class="photo-overlay">
-                        <h4>O Pedido</h4>
-                        <p>O momento mais especial das nossas vidas</p>
+                <div class="grid-item">
+                    <div class="photo-container">
+                        <img src="src/imagens/img2.jpeg" alt="O pedido" class="gallery-photo">
+                        <div class="photo-overlay">
+                            <h4>2023</h4>
+                            <p>O pedido de casamento</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,8 +168,13 @@
     <footer class="footer-section">
         <div class="container">
             <div class="footer-content">
-                <h3>Brenda & Caio</h3>
-                <p>22 de Julho de 2024</p>
+                <div class="footer-hearts">
+                    <span>💕</span>
+                    <span>💖</span>
+                    <span>💗</span>
+                </div>
+                <h3>Ana & Pedro</h3>
+                <p>15 de Junho de 2024</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook"></i></a>
