@@ -57,80 +57,57 @@
         </div>
     </section>
 
-    <!-- Invitation Card - Layout em Card Único -->
+    <!-- Invitation Content -->
     <section class="invitation-section">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8 col-xl-6">
-                    <div class="invitation-wrapper">
-                        <div class="invitation-card">
-                            <div class="card-header">
-                                <div class="header-decoration">
-                                    <div class="decoration-line"></div>
-                                    <div class="decoration-heart">
-                                        <i class="fas fa-heart" style="color: #fff;"></i>
-                                    </div>
-                                    <div class="decoration-line "></div>
-                                </div>
-                                <h2>Você está convidado!</h2>
-                                <p>Para celebrar conosco o nosso casamento</p>
-                            </div>
+        <div class="container">
+            <div class="invitation-card">
+                <div class="invitation-header">
+                    <h2>Você está convidado!</h2>
+                    <p class="invitation-subtitle">Para celebrar conosco o nosso casamento</p>
+                </div>
 
-                            <div class="card-body ">
-                                <div class="event-info ">
-                                    <div class="info-item ">
-                                        <div class="info-icon ">
-                                            <i class="fas fa-calendar-heart "></i>
-                                        </div>
-                                        <div class="info-content ">
-                                            <h3>Data & Horário</h3>
-                                            <p>15 de Junho de 2024</p>
-                                            <span class="time ">19:00 horas</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="info-item ">
-                                        <div class="info-icon ">
-                                            <i class="fas fa-church "></i>
-                                        </div>
-                                        <div class="info-content ">
-                                            <h3>Cerimônia</h3>
-                                            <p>Igreja Nossa Senhora da Conceição</p>
-                                            <span class="address ">Rua das Flores, 123 - Centro<br>São Paulo - SP</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="info-item ">
-                                        <div class="info-icon ">
-                                            <i class="fas fa-glass-cheers "></i>
-                                        </div>
-                                        <div class="info-content ">
-                                            <h3>Recepção</h3>
-                                            <p>Salão de Festas Jardim</p>
-                                            <span class="address ">Rua das Palmeiras, 456 - Jardins<br>São Paulo - SP</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="love-quote ">
-                                    <div class="quote-mark ">"</div>
-                                    <p>O amor é a única força capaz de transformar um inimigo em amigo.</p>
-                                    <span class="quote-author">- Martin Luther King</span>
-                                </div>
-                            </div>
-
-                            <div class="card-footer">
-                                <div class="rsvp-section">
-                                    <h3>Confirme sua presença</h3>
-                                    <p>Até 01 de Junho de 2024</p>
-                                    <button class="btn-romantic" onclick="openRSVP()">
-                                <i class="fas fa-heart"></i>
-                                Confirmar Presença
-                            </button>
-                                </div>
-                            </div>
+                <div class="event-details">
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Data & Horário</h3>
+                            <p>15 de Junho de 2024</p>
+                            <span class="time">19:00 horas</span>
                         </div>
                     </div>
+
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-church"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Cerimônia</h3>
+                            <p>Igreja Nossa Senhora da Conceição</p>
+                            <span class="address">Rua das Flores, 123 - Centro<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <div class="detail-content">
+                            <h3>Recepção</h3>
+                            <p>Salão de Festas Jardim</p>
+                            <span class="address">Rua das Palmeiras, 456 - Jardins<br>São Paulo - SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rsvp-section">
+                    <h3>Confirme sua presença</h3>
+                    <p>Até 01 de Junho de 2024</p>
+                    <button class="btn-primary" onclick="openRSVP()">
+                        <i class="fas fa-check-circle"></i>
+                        Confirmar Presença
+                    </button>
                 </div>
             </div>
         </div>
