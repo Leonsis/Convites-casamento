@@ -19,7 +19,7 @@ body {
 
 .hero-section {
     height: 100vh;
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     position: relative;
     display: flex;
     align-items: center;
@@ -41,7 +41,7 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
-    color: #8b1538;
+    color: #faf8f5;
     max-width: 600px;
     padding: 0 2rem;
 }
@@ -116,9 +116,9 @@ body {
     font-size: 4.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
-    color: #8b1538;
+    color: #faf8f5;
 }
 
 .wedding-date {
@@ -144,7 +144,7 @@ body {
     font-size: 1.3rem;
     font-style: italic;
     opacity: 0.8;
-    color: #8b1538;
+    color: #faf8f5;
 }
 
 .countdown-container {
@@ -180,7 +180,7 @@ body {
     display: block;
     font-size: 2.5rem;
     font-weight: 700;
-    color: #8b1538;
+    color: #faf8f5;
     line-height: 1;
 }
 
@@ -189,7 +189,7 @@ body {
     opacity: 0.8;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #8b1538;
+    color: #faf8f5;
 }
 
 .scroll-indicator {
@@ -199,7 +199,7 @@ body {
     transform: translateX(-50%);
     animation: bounce 2s infinite;
     font-size: 1.5rem;
-    color: #8b1538;
+    color: #faf8f5;
     opacity: 0.8;
     cursor: pointer;
 }
@@ -228,12 +228,12 @@ body {
     border-radius: 30px;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
     overflow: hidden;
-    border: 3px solid #ffb3ba;
+    border: 3px solid #8b1538;
     position: relative;
 }
 
 .card-header {
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     padding: 3rem 2rem;
     text-align: center;
     color: white;
@@ -287,20 +287,20 @@ body {
     padding: 1.5rem;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     border-radius: 20px;
-    border-left: 5px solid #ffb3ba;
+    border-left: 5px solid #8b1538;
     transition: all 0.3s ease;
 }
 
 .info-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    border-left-color: #ff9aa2;
+    border-left-color: #a61e3e;
 }
 
 .info-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -329,7 +329,7 @@ body {
 }
 
 .info-content .time {
-    color: #ff9aa2;
+    color: #8b1538;
     font-weight: 600;
     font-size: 1.1rem;
 }
@@ -343,7 +343,7 @@ body {
 .love-quote {
     text-align: center;
     padding: 2.5rem;
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     border-radius: 20px;
     position: relative;
     margin: 2rem 0;
@@ -374,7 +374,7 @@ body {
 }
 
 .card-footer {
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     padding: 3rem 2rem;
     text-align: center;
     color: white;
@@ -395,7 +395,7 @@ body {
 
 .btn-romantic {
     background: white;
-    color: #ff9aa2;
+    color: #8b1538;
     border: none;
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -410,7 +410,7 @@ body {
 .btn-romantic:hover {
     transform: translateY(-3px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-    color: #ff9aa2;
+    color: #8b1538;
 }
 
 .btn-romantic i {
@@ -550,7 +550,7 @@ body {
 .social-links a {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -575,7 +575,7 @@ body {
 }
 
 .modal-header {
-    background: linear-gradient(135deg, #ffb3ba 0%, #ff9aa2 100%);
+    background: linear-gradient(135deg, #8b1538 0%, #a61e3e 100%);
     color: white;
     border-radius: 20px 20px 0 0;
     border: none;
@@ -593,8 +593,8 @@ body {
 
 .form-control:focus,
 .form-select:focus {
-    border-color: #ffb3ba;
-    box-shadow: 0 0 0 0.2rem rgba(255, 179, 186, 0.25);
+    border-color: #8b1538;
+    box-shadow: 0 0 0 0.2rem rgba(139, 21, 56, 0.25);
 }
 
 
