@@ -6,6 +6,9 @@ function openRSVP() {
     modal.show();
 }
 
+// Array para armazenar dados dos convidados
+let convidadosData = JSON.parse(localStorage.getItem('convidadosData')) || [];
+
 // Função para submeter RSVP
 function submitRSVP() {
     const form = document.getElementById('rsvpForm');
@@ -21,17 +24,26 @@ function submitRSVP() {
         return;
     }
 
-    // Simular envio
+    // Criar objeto com dados
     const rsvpData = {
+        id: Date.now(), // ID único
         nome: name,
         email: email,
-        telefone: document.getElementById('rsvpPhone').value,
+        telefone: document.getElementById('rsvpPhone').value || 'Não informado',
         convidados: guests,
-        mensagem: document.getElementById('rsvpMessage').value,
-        restricoes: document.getElementById('rsvpDietary').checked
+        mensagem: document.getElementById('rsvpMessage').value || 'Sem mensagem',
+        restricoes: document.getElementById('rsvpDietary') ? document.getElementById('rsvpDietary').checked : false,
+        dataConfirmacao: new Date().toLocaleString('pt-BR')
     };
 
+    // Adicionar aos dados salvos
+    convidadosData.push(rsvpData);
+
+    // Salvar no localStorage
+    localStorage.setItem('convidadosData', JSON.stringify(convidadosData));
+
     console.log('RSVP Data:', rsvpData);
+    console.log('Total de convidados:', convidadosData.length);
 
     // Mostrar confirmação
     showNotification('Obrigado! Sua presença foi confirmada com sucesso! 💕', 'success');
@@ -42,6 +54,128 @@ function submitRSVP() {
 
     // Limpar formulário
     form.reset();
+}
+
+// ===== FUNÇÕES DE EXPORTAÇÃO CSV =====
+
+// Função para converter dados para CSV
+function convertToCSV(data) {
+    if (data.length === 0) return '';
+
+    // Cabeçalhos do CSV
+    const headers = ['ID', 'Nome', 'Email', 'Telefone', 'Convidados', 'Mensagem', 'Restrições Alimentares', 'Data Confirmação'];
+
+    // Converter dados para linhas CSV
+    const csvRows = [headers.join(',')];
+
+    data.forEach(item => {
+        const row = [
+            item.id,
+            `"${item.nome}"`,
+            `"${item.email}"`,
+            `"${item.telefone}"`,
+            item.convidados,
+            `"${item.mensagem.replace(/"/g, '""')}"`, // Escapar aspas duplas
+            item.restricoes ? 'Sim' : 'Não',
+            `"${item.dataConfirmacao}"`
+        ];
+        csvRows.push(row.join(','));
+    });
+
+    return csvRows.join('\n');
+}
+
+// Função para baixar arquivo CSV
+function downloadCSV(csvContent, filename) {
+    // Criar blob com o conteúdo CSV
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+    // Criar link de download
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+
+    // Adicionar ao DOM, clicar e remover
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Limpar URL
+    URL.revokeObjectURL(url);
+}
+
+// Função para exportar dados para CSV
+function exportToCSV() {
+    if (convidadosData.length === 0) {
+        showNotification('Nenhum dado encontrado para exportar.', 'warning');
+        return;
+    }
+
+    const csvContent = convertToCSV(convidadosData);
+    const filename = `convidados_casamento_${new Date().toISOString().split('T')[0]}.csv`;
+
+    downloadCSV(csvContent, filename);
+    showNotification(`Arquivo CSV exportado com sucesso! 📄`, 'success');
+}
+
+// Função para exportar dados para JSON
+function exportToJSON() {
+    if (convidadosData.length === 0) {
+        showNotification('Nenhum dado encontrado para exportar.', 'warning');
+        return;
+    }
+
+    const jsonContent = JSON.stringify(convidadosData, null, 2);
+    const blob = new Blob([jsonContent], { type: 'application/json;charset=utf-8;' });
+
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', `convidados_casamento_${new Date().toISOString().split('T')[0]}.json`);
+    link.style.visibility = 'hidden';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(url);
+    showNotification(`Arquivo JSON exportado com sucesso! 📋`, 'success');
+}
+
+// Função para mostrar estatísticas
+function showStats() {
+    const totalConvidados = convidadosData.length;
+    const totalPessoas = convidadosData.reduce((sum, item) => sum + parseInt(item.convidados), 0);
+    const comRestricoes = convidadosData.filter(item => item.restricoes).length;
+
+    const statsMessage = `
+        📊 ESTATÍSTICAS DO CASAMENTO
+        
+        👥 Total de Confirmações: ${totalConvidados}
+        🧑‍🤝‍🧑 Total de Pessoas: ${totalPessoas}
+        🥗 Com Restrições Alimentares: ${comRestricoes}
+        📅 Última Atualização: ${new Date().toLocaleString('pt-BR')}
+    `;
+
+    showNotification(statsMessage, 'info');
+}
+
+// Função para limpar todos os dados
+function clearAllData() {
+    if (convidadosData.length === 0) {
+        showNotification('Nenhum dado encontrado para limpar.', 'warning');
+        return;
+    }
+
+    if (confirm('⚠️ ATENÇÃO: Esta ação irá apagar TODOS os dados dos convidados. Esta ação não pode ser desfeita!\n\nTem certeza que deseja continuar?')) {
+        convidadosData = [];
+        localStorage.removeItem('convidadosData');
+        showNotification('Todos os dados foram removidos com sucesso! 🗑️', 'success');
+    }
 }
 
 // Função para mostrar notificações
